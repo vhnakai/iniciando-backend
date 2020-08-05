@@ -3,3 +3,5 @@ database/migrations/ReCreateAppointment.js
 
 src/database/migrations/1593607161370-ReCreateAppointments.ts
 src/database/migrations/1593553607381-CreateAppointments.ts
+tmp/*
+!tmp/.gitkeep
