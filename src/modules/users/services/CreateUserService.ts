@@ -1,5 +1,6 @@
 /* eslint-disable class-methods-use-this */
 import { hash } from 'bcryptjs';
+import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
 import IUserRepository from '../repositories/IUserRepository';
@@ -10,9 +11,13 @@ interface IRequest {
   email: string;
   password: string;
 }
+
+@injectable()
 class CreateUserService {
   // eslint-disable-next-line no-useless-constructor
-  constructor(private usersRepository: IUserRepository) {}
+  constructor(
+    @inject('UsersRepository') private usersRepository: IUserRepository,
+  ) {}
 
   public async execute({ name, email, password }: IRequest): Promise<User> {
     const checkUserExists = await this.usersRepository.findByEmail(email);
