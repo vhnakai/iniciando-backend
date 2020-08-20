@@ -1,13 +1,17 @@
-import AppError from '@shared/errors/AppError';
+// import AppError from '@shared/errors/AppError';
 
+import FakeMailProvider from '@shared/container/providers/MailProvider/fakes/fakeMailProvider';
 import FakeUserRepository from '../repositories/Fake/FakeUserRepository';
 import SendForgotPasswordEmailService from './SendForgotPasswordEmailService';
 
-describe('SendForgotPawoordEmail', () => {
+describe('SendForgotPasswordEmail', () => {
   it('should be able to recover the password using the email', async () => {
     const fakeUserRepository = new FakeUserRepository();
+    const fakeMailProvider = new FakeMailProvider();
 
-    const sendForgotEmailPassowrdService = new SendForgotPasswordEmailService(
+    const sendMail = jest.spyOn(fakeMailProvider, 'sendMail');
+
+    const sendForgotPasswordEmailService = new SendForgotPasswordEmailService(
       fakeUserRepository,
     );
 
@@ -17,6 +21,10 @@ describe('SendForgotPawoordEmail', () => {
       password: '123456',
     });
 
-    expect(user).toHaveProperty('id');
+    await sendForgotPasswordEmailService.execute({
+      email: 'johndoe@example.com',
+    });
+
+    expect(sendMail).toHaveBeenCalled();
   });
 });
