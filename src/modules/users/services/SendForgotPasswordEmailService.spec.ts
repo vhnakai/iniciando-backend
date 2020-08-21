@@ -13,6 +13,7 @@ describe('SendForgotPasswordEmail', () => {
 
     const sendForgotPasswordEmailService = new SendForgotPasswordEmailService(
       fakeUserRepository,
+      fakeMailProvider,
     );
 
     await fakeUserRepository.create({
@@ -27,4 +28,5 @@ describe('SendForgotPasswordEmail', () => {
 
     expect(sendMail).toHaveBeenCalled();
   });
+  it('should not be able to recover a non-existsting user password', async () => {});
 });
