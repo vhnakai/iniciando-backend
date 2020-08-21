@@ -1,7 +1,7 @@
 import AppError from '@shared/errors/AppError';
 
-import FakeStorageProvider from '@shared/container/providers/StorageProvider/fake/fakeStorageProvider';
-import FakeUserRepository from '../repositories/Fake/FakeUserRepository';
+import FakeStorageProvider from '@shared/container/providers/StorageProvider/fakes/fakeStorageProvider';
+import FakeUserRepository from '../repositories/fakes/FakeUserRepository';
 import UpdateUserAvatarService from './UpdateUserAvatarService';
 
 describe('CreateUser', () => {
