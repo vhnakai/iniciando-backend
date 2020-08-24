@@ -19,6 +19,13 @@ class FakeUserTokenRepository implements IUserTokenRepository {
 
     return userToken;
   }
+
+  public async findByUserToken(token: string): Promise<UserToken | undefined> {
+    const userToken = this.userTokens.find(
+      findToken => findToken.token === token,
+    );
+    return userToken;
+  }
 }
 
 export default FakeUserTokenRepository;
