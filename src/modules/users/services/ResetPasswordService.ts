@@ -29,7 +29,7 @@ class ResetPasswordService {
   ) {}
 
   public async execute({ password, token }: IRequest): Promise<void> {
-    const userToken = await this.userTokensRepository.findByUserToken(token);
+    const userToken = await this.userTokensRepository.findByToken(token);
 
     if (!userToken) {
       throw new AppError('User token do not exit');
