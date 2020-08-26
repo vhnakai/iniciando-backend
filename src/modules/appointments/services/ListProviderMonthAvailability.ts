@@ -23,7 +23,9 @@ class ListProviderMonthAvailabilityService {
   ) {}
 
   public async execute({ user_id, year, month }: IRequest): Promise<IResponse> {
-    return [{ day: 1, available: false }];
+    const appointments = this.appointmentsRepository.return[
+      { day: 1, available: false }
+    ];
   }
 }
 
