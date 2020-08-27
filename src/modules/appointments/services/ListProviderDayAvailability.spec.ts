@@ -1,13 +1,13 @@
-import ListProviderMonthAvailabilityService from './ListProviderMonthAvailability';
 import FakeAppointmentsRepository from '../repositories/Fakes/FakeAppointmentRepository';
+import ListProviderDayAvailabilityService from './ListProviderDayAvailability';
 
 let fakeAppointmentRepository: FakeAppointmentsRepository;
-let listProviderMonthAvailabilityService: ListProviderMonthAvailabilityService;
+let listProviderDayAvailabilityService: ListProviderDayAvailabilityService;
 
-describe('ListProviderMonthAvalability', () => {
+describe('ListProviderDayAvailability', () => {
   beforeEach(() => {
     fakeAppointmentRepository = new FakeAppointmentsRepository();
-    listProviderMonthAvailabilityService = new ListProviderMonthAvailabilityService(
+    listProviderDayAvailabilityService = new ListProviderDayAvailabilityService(
       fakeAppointmentRepository,
     );
   });
@@ -20,23 +20,20 @@ describe('ListProviderMonthAvalability', () => {
       provider_id: 'user',
       date: new Date(2020, 4, 20, 10, 0, 0),
     });
-    await fakeAppointmentRepository.create({
-      provider_id: 'user',
-      date: new Date(2020, 4, 21, 8, 0, 0),
-    });
 
-    const availability = listProviderMonthAvailabilityService.execute({
+    const availability = listProviderDayAvailabilityService.execute({
       provider_id: 'user',
       year: 2020,
       month: 5,
+      day: 20,
     });
 
-    expect(availability).toEqual(
+    expect(availability).toContainEqual(
       expect.arrayContaining([
-        { day: 29, available: true },
-        { day: 20, available: false },
-        { day: 21, available: false },
-        { day: 22, available: true },
+        { hour: 8, available: false },
+        { hour: 9, available: true },
+        { hour: 10, available: false },
+        { hour: 11, available: true },
       ]),
     );
   });
