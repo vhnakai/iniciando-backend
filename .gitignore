@@ -6,3 +6,11 @@ src/database/migrations/1593553607381-CreateAppointments.ts
 tmp/*
 !tmp/.gitkeep
 coverage
+coverage/lcov-report/users/services/index.html
+coverage/lcov-report/users/services/AuthenticateUserService.ts.html
+coverage/lcov-report/users/services/index.html
+coverage/lcov-report/users/services/CreateUserService.ts.html
+coverage/lcov-report/users/services/AuthenticateUserService.ts.html
+coverage/lcov-report/index.html
+coverage/lcov-report/appointments/services/index.html
+coverage/lcov-report/appointments/services/CreateAppointmentService.ts.html
