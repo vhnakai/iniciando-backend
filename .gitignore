@@ -1,5 +1,5 @@
 node_modules
-coverage
+coverage/
 database/migrations/ReCreateAppointment.js
 
 src/database/migrations/1593607161370-ReCreateAppointments.ts
