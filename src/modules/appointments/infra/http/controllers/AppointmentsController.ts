@@ -1,21 +1,22 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-import ListProviderMonthAvailabilityService from '@modules/appointments/services/ListProviderMonthAvailabilityService';
+import CreateAppointmentService from '@modules/appointments/services/CreateAppointmentService';
 
 export default class ProviderMonthAvailabilityController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const { provider_id, month, year } = request.body;
+    const user_id = request.user.id;
+    const { provider_id, date } = request.body;
 
-    const ListProviderMonthAvailability = container.resolve(
-      ListProviderMonthAvailabilityService,
+    const createAppointmentService = container.resolve(
+      CreateAppointmentService,
     );
 
-    const availability = await ListProviderMonthAvailability.execute({
+    const appointment = await createAppointmentService.execute({
       provider_id,
-      month,
-      year,
+      date,
+      user_id,
     });
 
-    return response.json(availability);
+    return response.json(appointment);
   }
 }

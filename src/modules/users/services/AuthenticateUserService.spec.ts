@@ -1,4 +1,5 @@
 import AppError from '@shared/errors/AppError';
+import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 import FakeUserRepository from '../repositories/fakes/FakeUserRepository';
 import FakeHashProvider from '../providers/HashProvider/fakes/FakeHashProvider';
 import AuthenticateUserService from './AuthenticateUserService';
@@ -8,16 +9,22 @@ let fakeUserRepository: FakeUserRepository;
 let fakeHashProvider: FakeHashProvider;
 let authenticateUser: AuthenticateUserService;
 let createUser: CreateUserService;
+let fakeCacheProvider: FakeCacheProvider;
 
 describe('AuthenticateUser', () => {
   beforeEach(() => {
     fakeUserRepository = new FakeUserRepository();
     fakeHashProvider = new FakeHashProvider();
+    fakeCacheProvider = new FakeCacheProvider();
     authenticateUser = new AuthenticateUserService(
       fakeUserRepository,
       fakeHashProvider,
     );
-    createUser = new CreateUserService(fakeUserRepository, fakeHashProvider);
+    createUser = new CreateUserService(
+      fakeUserRepository,
+      fakeHashProvider,
+      fakeCacheProvider,
+    );
   });
   it('should be able to authenticate', async () => {
     const user = await createUser.execute({
