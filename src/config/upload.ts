@@ -5,7 +5,7 @@ import crypto from 'crypto';
 const tmpFolder = path.resolve(__dirname, '..', '..', 'tmp');
 
 interface IUploadConfig {
-  driver: 's3';
+  driver: 's3' | 'disk';
   tmpFolder: string;
   uploadsFolder: string;
   multer: {

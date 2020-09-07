@@ -2,7 +2,7 @@
 /* eslint-disable import/prefer-default-export */
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class CreateAppointments1593553607381 implements MigrationInterface {
+export class CreateAppointments1593607161370 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
@@ -24,6 +24,16 @@ export class CreateAppointments1593553607381 implements MigrationInterface {
             name: 'date',
             type: 'timestamp',
             isNullable: false,
+          },
+          {
+            name: 'create_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
+          {
+            name: 'update_at',
+            type: 'timestamp',
+            default: 'now()',
           },
         ],
       }),
