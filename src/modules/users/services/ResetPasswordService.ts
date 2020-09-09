@@ -18,7 +18,7 @@ interface IRequest {
 class ResetPasswordService {
   // eslint-disable-next-line no-useless-constructor
   constructor(
-    @inject('UsersRepository')
+    @inject('UserRepository')
     private usersRepository: IUserRepository,
 
     @inject('UserTokensRepositoy')

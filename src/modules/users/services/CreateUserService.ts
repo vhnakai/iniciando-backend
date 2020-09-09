@@ -17,7 +17,7 @@ interface IRequest {
 class CreateUserService {
   // eslint-disable-next-line no-useless-constructor
   constructor(
-    @inject('UsersRepository')
+    @inject('UserRepository')
     private usersRepository: IUserRepository,
 
     @inject('HashProvider')

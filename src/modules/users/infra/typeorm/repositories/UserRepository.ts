@@ -1,12 +1,12 @@
 import { getRepository, Repository, Not } from 'typeorm';
 
-import IUsersRepository from '@modules/users/repositories/IUserRepository';
+import IUserRepository from '@modules/users/repositories/IUserRepository';
 import ICreateUserDTO from '@modules/users/dtos/ICreateUserDTO';
 
 import IFindAllProviderDTO from '@modules/users/dtos/IFindAllProviderDTO';
 import User from '../entities/User';
 
-class UsersRepository implements IUsersRepository {
+class UserRepository implements IUserRepository {
   private ormRepository: Repository<User>;
 
   constructor() {
@@ -39,11 +39,11 @@ class UsersRepository implements IUsersRepository {
   }
 
   public async create(UserData: ICreateUserDTO): Promise<User> {
-    const appointment = this.ormRepository.create(UserData);
+    const user = this.ormRepository.create(UserData);
 
-    await this.ormRepository.save(appointment);
+    await this.ormRepository.save(user);
 
-    return appointment;
+    return user;
   }
 
   public async save(user: User): Promise<User> {
@@ -51,4 +51,4 @@ class UsersRepository implements IUsersRepository {
   }
 }
 
-export default UsersRepository;
+export default UserRepository;
