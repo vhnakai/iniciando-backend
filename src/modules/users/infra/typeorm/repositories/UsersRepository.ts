@@ -4,19 +4,19 @@ import IUserRepository from '@modules/users/repositories/IUserRepository';
 import ICreateUserDTO from '@modules/users/dtos/ICreateUserDTO';
 
 import IFindAllProviderDTO from '@modules/users/dtos/IFindAllProviderDTO';
-import User from '../entities/User';
+import Users from '../entities/Users';
 
-class UserRepository implements IUserRepository {
-  private ormRepository: Repository<User>;
+class UsersRepository implements IUserRepository {
+  private ormRepository: Repository<Users>;
 
   constructor() {
-    this.ormRepository = getRepository(User);
+    this.ormRepository = getRepository(Users);
   }
 
   public async findAllProviders({
     except_user_id,
-  }: IFindAllProviderDTO): Promise<User[]> {
-    let users: User[];
+  }: IFindAllProviderDTO): Promise<Users[]> {
+    let users: Users[];
     if (except_user_id) {
       users = await this.ormRepository.find({
         where: { id: Not(except_user_id) },
@@ -28,17 +28,17 @@ class UserRepository implements IUserRepository {
     return users;
   }
 
-  public async findById(id: string): Promise<User | undefined> {
+  public async findById(id: string): Promise<Users | undefined> {
     const user = await this.ormRepository.findOne(id);
     return user;
   }
 
-  public async findByEmail(email: string): Promise<User | undefined> {
+  public async findByEmail(email: string): Promise<Users | undefined> {
     const user = await this.ormRepository.findOne({ where: { email } });
     return user;
   }
 
-  public async create(UserData: ICreateUserDTO): Promise<User> {
+  public async create(UserData: ICreateUserDTO): Promise<Users> {
     const user = this.ormRepository.create(UserData);
 
     await this.ormRepository.save(user);
@@ -46,9 +46,9 @@ class UserRepository implements IUserRepository {
     return user;
   }
 
-  public async save(user: User): Promise<User> {
+  public async save(user: Users): Promise<Users> {
     return this.ormRepository.save(user);
   }
 }
 
-export default UserRepository;
+export default UsersRepository;

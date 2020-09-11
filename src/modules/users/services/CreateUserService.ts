@@ -4,7 +4,7 @@ import { injectable, inject } from 'tsyringe';
 import AppError from '@shared/errors/AppError';
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import IUserRepository from '../repositories/IUserRepository';
-import User from '../infra/typeorm/entities/User';
+import Users from '../infra/typeorm/entities/Users';
 import IHashProvider from '../providers/HashProvider/models/IHashProvider';
 
 interface IRequest {
@@ -17,7 +17,7 @@ interface IRequest {
 class CreateUserService {
   // eslint-disable-next-line no-useless-constructor
   constructor(
-    @inject('UserRepository')
+    @inject('UsersRepository')
     private usersRepository: IUserRepository,
 
     @inject('HashProvider')
@@ -25,7 +25,7 @@ class CreateUserService {
     @inject('CacheProvider') private cacheProvider: ICacheProvider,
   ) {}
 
-  public async execute({ name, email, password }: IRequest): Promise<User> {
+  public async execute({ name, email, password }: IRequest): Promise<Users> {
     const checkUserExists = await this.usersRepository.findByEmail(email);
 
     if (checkUserExists) {

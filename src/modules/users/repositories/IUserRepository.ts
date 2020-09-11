@@ -1,4 +1,4 @@
-import User from '../infra/typeorm/entities/User';
+import User from '../infra/typeorm/entities/Users';
 import ICreateUserDTO from '../dtos/ICreateUserDTO';
 import IFindAllProviderDTO from '../dtos/IFindAllProviderDTO';
 

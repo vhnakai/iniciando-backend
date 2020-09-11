@@ -3,14 +3,14 @@ import ICreateUserDTO from '@modules/users/dtos/ICreateUserDTO';
 import { uuid } from 'uuidv4';
 import IFindAllProviderDTO from '@modules/users/dtos/IFindAllProviderDTO';
 
-import User from '../../infra/typeorm/entities/User';
+import Users from '../../infra/typeorm/entities/Users';
 
 class FakeUsersRepository implements IUsersRepository {
-  private users: User[] = [];
+  private users: Users[] = [];
 
   public async findAllProviders({
     except_user_id,
-  }: IFindAllProviderDTO): Promise<User[]> {
+  }: IFindAllProviderDTO): Promise<Users[]> {
     let { users } = this;
 
     if (except_user_id) {
@@ -20,25 +20,25 @@ class FakeUsersRepository implements IUsersRepository {
     return users;
   }
 
-  public async findById(id: string): Promise<User | undefined> {
+  public async findById(id: string): Promise<Users | undefined> {
     const findedUser = this.users.find(user => user.id === id);
     return findedUser;
   }
 
-  public async findByEmail(email: string): Promise<User | undefined> {
+  public async findByEmail(email: string): Promise<Users | undefined> {
     const findedUser = this.users.find(user => user.email === email);
     return findedUser;
   }
 
-  public async create(userData: ICreateUserDTO): Promise<User> {
-    const user = new User();
+  public async create(userData: ICreateUserDTO): Promise<Users> {
+    const user = new Users();
     Object.assign(user, { id: uuid() }, userData);
 
     this.users.push(user);
     return user;
   }
 
-  public async save(user: User): Promise<User> {
+  public async save(user: Users): Promise<Users> {
     const findIndex = this.users.findIndex(findUser => findUser.id === user.id);
     this.users[findIndex] = user;
     return user;

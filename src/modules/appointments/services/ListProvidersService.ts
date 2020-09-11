@@ -1,5 +1,5 @@
 import { injectable, inject } from 'tsyringe';
-import User from '@modules/users/infra/typeorm/entities/User';
+import User from '@modules/users/infra/typeorm/entities/Users';
 import IUserRepository from '@modules/users/repositories/IUserRepository';
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 

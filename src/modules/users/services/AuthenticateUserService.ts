@@ -4,7 +4,7 @@ import authConfig from '@config/auth';
 import { injectable, inject } from 'tsyringe';
 import IUserRepository from '../repositories/IUserRepository';
 import IHashProvider from '../providers/HashProvider/models/IHashProvider';
-import User from '../infra/typeorm/entities/User';
+import Users from '../infra/typeorm/entities/Users';
 
 interface IRequest {
   email: string;
@@ -12,7 +12,7 @@ interface IRequest {
 }
 
 interface IResponse {
-  user: User;
+  user: Users;
   token: string;
 }
 
