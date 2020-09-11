@@ -9,7 +9,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 
-import User from '@modules/users/infra/typeorm/entities/Users';
+import Users from '@modules/users/infra/typeorm/entities/Users';
 
 @Entity('appointments')
 class Appointment {
@@ -19,16 +19,16 @@ class Appointment {
   @Column()
   provider_id: string;
 
-  @ManyToOne(() => User)
+  @ManyToOne(() => Users)
   @JoinColumn({ name: 'provider_id' })
-  provider: User;
+  provider: Users;
 
   @Column()
   user_id: string;
 
-  @ManyToOne(() => User)
+  @ManyToOne(() => Users)
   @JoinColumn({ name: 'user_id' })
-  user: User;
+  user: Users;
 
   @Column('timestamp')
   date: Date;
