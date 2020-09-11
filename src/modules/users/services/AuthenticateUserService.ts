@@ -49,6 +49,7 @@ class AuthenticateUserSerivce {
       subject: user.id,
       expiresIn,
     });
+
     return {
       user,
       token,
