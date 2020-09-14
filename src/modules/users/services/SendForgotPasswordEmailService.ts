@@ -35,7 +35,7 @@ class SendForgotPasswordEmailService {
 
     const forgotPasswordTemplate = path.resolve(
       __dirname,
-      '..',
+      '../views/',
       'forgot_password.hbs',
     );
 
