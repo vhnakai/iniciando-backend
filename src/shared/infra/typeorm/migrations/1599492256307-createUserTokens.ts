@@ -12,6 +12,7 @@ export default class createUserTokens1599492256307
             type: 'uuid',
             isPrimary: true,
             generationStrategy: 'uuid',
+            default: 'uuid_generate_v4()',
           },
           {
             name: 'token',
