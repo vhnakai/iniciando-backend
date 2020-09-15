@@ -10,17 +10,11 @@ const providerAppointmentController = new ProviderAppointmentsController();
 
 appointmentRouter.use(ensureAuthenticated);
 
-// appointmentRouter.get('/', async (request, response) => {
-// const appointments = await appointmentsRepository.find();
-//
-// return response.json(appointments);
-/// /});
-
 appointmentRouter.post(
   '/',
   celebrate({
     [Segments.BODY]: {
-      provider_id: Joi.string().uuid().required,
+      provider_id: Joi.string().uuid().required(),
       date: Joi.date(),
     },
   }),

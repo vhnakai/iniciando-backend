@@ -15,9 +15,9 @@ interface IRequest {
 class CreateAppointmentService {
   // eslint-disable-next-line no-useless-constructor
   constructor(
-    @inject('AppointmentsRepositoy')
+    @inject('AppointmentsRepository')
     private appointmentsRepository: IAppointmentsRepository,
-    @inject('NotificationsRepositoy')
+    @inject('NotificationsRepository')
     private notificationsRepository: INotificationsRepository,
     @inject('CacheProvider') private cacheProvider: ICacheProvider,
   ) {}
